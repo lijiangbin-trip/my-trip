@@ -1466,6 +1466,11 @@
     }
     .mc-hint b{ color:#94A3B8; font-weight:600; }
     body.mc-lock{ overflow:hidden; }
+    .map-app-links{ display:grid; grid-template-columns:1fr 1fr; gap:.55rem; margin:.75rem 0; }
+    .map-app-links a{ display:flex; min-height:48px; align-items:center; justify-content:center; padding:.55rem .6rem; border-radius:14px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.08); color:#fff; text-decoration:none; font-size:.82rem; font-weight:650; }
+    .map-app-links a:hover{ background:rgba(255,255,255,.16); }
+    .map-app-web{ display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin:.65rem 0 .2rem; color:#d9f99d; font-size:.75rem; }
+    .map-app-web a{ color:inherit; }
 
     /* ============================================================
        V33 · 导航模式双选（纯国道 / 高速直达）
@@ -2544,6 +2549,261 @@
       color:rgba(255,255,255,.72) !important;
     }
   </style>
+  <style id="codex-apple-preview">
+    /* Liquid glass reference pass: preserve the scenic wallpaper and let it show through. */
+    :root {
+      color-scheme: dark;
+      --bg: transparent !important;
+      --card: rgba(224, 255, 177, .055) !important;
+      --line: rgba(255,255,255,.34) !important;
+      --cyan: #b7f3ff !important;
+      --sky: #80c9ff !important;
+      --amber: #ffe79b !important;
+      --green: #d9f8a5 !important;
+      --tx: #ffffff !important;
+      --tx2: rgba(255,255,255,.88) !important;
+      --tx3: rgba(255,255,255,.69) !important;
+      --lg-bg: rgba(219, 255, 159, .035) !important;
+      --lg-bg-hi: rgba(255,255,255,.09) !important;
+      --lg-blur: blur(2px) saturate(165%) !important;
+      --lg-bd: 1px solid rgba(255,255,255,.34) !important;
+      --lg-r: 24px !important;
+      --lg-sd: 0 14px 38px rgba(10,35,8,.22), inset 0 1px 0 rgba(255,255,255,.28) !important;
+      --lg-shadow: inset 0 1px 0 rgba(255,255,255,.24), inset 0 -1px 0 rgba(255,255,255,.09) !important;
+    }
+    html, body {
+      background: transparent !important;
+      background-color: transparent !important;
+      color: #fff !important;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    html { background-image: none !important; }
+    body::before { background: rgba(8,20,7,.035) !important; }
+    #app-wallpaper {
+      filter: saturate(1.13) brightness(1.04) !important;
+      background-color: transparent !important;
+    }
+
+    /* Translucent tinted glass: blur the view slightly without hiding its colors or detail. */
+    .glass-card, .station-card, .day-card, .diet-card, .console-bar, .wk-card,
+    .param-chip, .risk-note, .redline, .week-card, .posture-note, .hosp-item,
+    .edc-item, .eq-drawer, .dt-col, .wk-day, .hud-cap, .st-head, .glass-nav,
+    .wx-hud, .mh-panel, .toast, .side-rail, .to-top-btn, .sr-tip,
+    .nav-edge-indicator {
+      background-color: rgba(222,255,164,.035) !important;
+      background-image: linear-gradient(145deg, rgba(255,255,255,.105), rgba(255,255,255,.012) 48%, rgba(195,255,106,.025)) !important;
+      -webkit-backdrop-filter: blur(2px) saturate(165%) !important;
+      backdrop-filter: blur(2px) saturate(165%) !important;
+      border-color: rgba(255,255,255,.40) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.42)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(205,255,145,.20), 0 10px 30px rgba(10,35,8,.12) !important;
+      color: #fff !important;
+      text-shadow: 0 1px 8px rgba(0,0,0,.28) !important;
+    }
+    .glass-card, .station-card { border-radius: 24px !important; }
+    .day-card, .diet-card, .wk-day, .dt-col, .wx-hud, .hud-cap,
+    .console-bar, .wk-card, .param-chip, .risk-note, .week-card,
+    .posture-note, .hosp-item, .edc-item, .eq-drawer, .mh-panel {
+      background-color: rgba(226,255,175,.045) !important;
+      background-image: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.015) 58%, rgba(204,255,123,.03)) !important;
+      -webkit-backdrop-filter: blur(2px) saturate(170%) !important;
+      backdrop-filter: blur(2px) saturate(170%) !important;
+      border-radius: 18px !important;
+    }
+    #panel-itinerary > .glass-card,
+    #panel-itinerary .station-card,
+    #panel-itinerary .station-card:hover {
+      background-color: rgba(205,245,150,.04) !important;
+      background-image: linear-gradient(150deg, rgba(255,255,255,.12), rgba(255,255,255,.012) 55%, rgba(208,255,140,.025)) !important;
+      border-color: rgba(255,255,255,.33) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.42)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(205,255,145,.20), 0 12px 34px rgba(8,30,5,.14) !important;
+      -webkit-backdrop-filter: blur(2px) saturate(170%) !important;
+      backdrop-filter: blur(2px) saturate(170%) !important;
+      animation: none !important;
+    }
+    #panel-itinerary .station-card .st-head,
+    #panel-itinerary .station-card .day-card,
+    #panel-itinerary .station-card .diet-card,
+    #panel-itinerary .station-card .wx-hud,
+    #panel-itinerary .station-card .hud-cap {
+      background-color: rgba(240,255,222,.07) !important;
+      background-image: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.02)) !important;
+      border-color: rgba(255,255,255,.22) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.42)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(205,255,145,.16) !important;
+    }
+    .glass-card h1, .glass-card h2, .glass-card h3, .glass-card h4,
+    .station-card strong, .station-card b, .st-title { color: #fff !important; }
+    .st-sub, .tl-desc, .diet-tip, #panel-daily p, #panel-diet p,
+    #panel-gear p, #panel-tracker p, .wk-tx, .ck-text {
+      color: rgba(255,255,255,.86) !important;
+      text-shadow: 0 1px 6px rgba(0,0,0,.28) !important;
+    }
+    .st-num { color: #efffc0 !important; -webkit-text-stroke: 0 !important; opacity: .9; }
+    .st-chip, .day-tag .mono, .param-chip {
+      background: rgba(229,255,173,.10) !important;
+      color: #fff !important;
+      border-color: rgba(255,255,255,.32) !important;
+    }
+    .mp-fill { background: #d7f6a1 !important; box-shadow: 0 0 14px rgba(225,255,173,.45) !important; }
+    .mp-track { background: rgba(255,255,255,.26) !important; }
+    .tab-btn.active, .sr-btn.active {
+      color: #fff !important;
+      background: rgba(211,246,158,.14) !important;
+      border-color: rgba(255,255,255,.45) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.24) !important;
+    }
+    .tab-btn, .sr-btn, .station-fold-toggle, #reset-check, .reset-btn,
+    .to-top-btn, .nav-edge-indicator {
+      transition: color .28s ease, background-color .28s ease, border-color .28s ease, transform .28s ease !important;
+    }
+    .station-card { transition: transform .3s ease, border-color .3s ease !important; }
+    .station-card:hover { transform: translateY(-2px); }
+    .station-card.hl { border-color: rgba(255,255,255,.68) !important; animation: none !important; }
+    :focus-visible { outline: 2px solid rgba(224,255,170,.95) !important; outline-offset: 3px !important; }
+    ::selection { background: rgba(218,255,158,.4) !important; color: #fff !important; }
+    footer { color: rgba(255,255,255,.85) !important; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+    /* On the four secondary pages, center compact content in the usable viewport.
+       Taller panels naturally grow and remain normally scrollable. */
+    .tab-panel.hidden { display: none !important; }
+    .tab-panel-centered {
+      box-sizing: border-box !important;
+      min-height: calc(100svh - 132px) !important;
+      min-height: calc(100dvh - 132px) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      padding-top: max(14px, env(safe-area-inset-top, 0px)) !important;
+      padding-bottom: max(28px, env(safe-area-inset-bottom, 0px)) !important;
+    }
+    @media (max-width: 767px) {
+      .tab-panel-centered {
+        min-height: calc(100svh - 112px) !important;
+        min-height: calc(100dvh - 112px) !important;
+        padding-bottom: max(34px, env(safe-area-inset-bottom, 0px)) !important;
+      }
+    }
+    /* Icon controls show only their symbol. Labels and card surfaces remain unchanged. */
+    #sideRail .sr-btn, #sideRail .sr-btn:hover, #sideRail .sr-btn.active,
+    #sideRail .sr-fold, #sideRail .sr-fold:hover,
+    .station-fold-toggle, .station-fold-toggle:hover, .music-mute-button {
+      background: transparent !important;
+      background-image: none !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+    #sideRail .sr-btn.active::before { background: rgba(255,255,255,.92) !important; }
+
+    /* The original gesture-driven sheen is now visible on the glass surfaces. */
+    .glass-card, .station-card, .day-card, .diet-card, .console-bar,
+    .wk-card, .param-chip, .risk-note, .week-card, .posture-note,
+    .hosp-item, .edc-item, .eq-drawer, .dt-col, .wk-day, .hud-cap,
+    .st-head, .glass-nav, .wx-hud, .mh-panel {
+      transition: box-shadow .16s ease-out, border-color .22s ease,
+                  background-color .22s ease, transform .22s ease-out !important;
+    }
+    /* The return control is an arrow glyph only; keep a generous invisible tap target. */
+    #toTopBtn.to-top-btn {
+      width: 48px !important; height: 48px !important;
+      color: rgba(255,255,255,.84) !important;
+      background: transparent !important; background-image: none !important;
+      border: 0 !important; border-radius: 0 !important;
+      box-shadow: none !important;
+      -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+      text-shadow: 0 1px 8px rgba(0,0,0,.42) !important;
+      opacity: 0 !important; pointer-events: none !important;
+      transform: translate(-50%, 12px) !important;
+      transition: opacity .24s ease, transform .24s ease !important;
+    }
+    #toTopBtn.to-top-btn.tt-show {
+      opacity: .82 !important; pointer-events: auto !important;
+      transform: translate(-50%, 0) !important;
+    }
+    #toTopBtn.to-top-btn:hover {
+      color: #fff !important; opacity: 1 !important;
+      background: transparent !important; box-shadow: none !important;
+    }
+  </style>
+  <style id="neutral-glass-and-page-spacing">
+    /* 降低草地绿色对玻璃表面的染色，保留透景，改为轻微冷中性反射。 */
+    body::before { background: rgba(13, 18, 28, .035) !important; }
+    #app-wallpaper { filter: saturate(1) brightness(1.04) !important; }
+    .glass-card, .station-card, .day-card, .diet-card, .console-bar, .wk-card,
+    .param-chip, .risk-note, .redline, .week-card, .posture-note, .hosp-item,
+    .edc-item, .eq-drawer, .dt-col, .wk-day, .hud-cap, .st-head, .glass-nav,
+    .wx-hud, .mh-panel, .toast, .side-rail, .to-top-btn, .sr-tip,
+    .nav-edge-indicator {
+      background-color: rgba(222, 230, 244, .025) !important;
+      background-image: linear-gradient(145deg, rgba(239, 245, 255, .085), rgba(255,255,255,.012) 52%, rgba(188, 203, 226, .018)) !important;
+      -webkit-backdrop-filter: blur(1.5px) saturate(82%) brightness(1.04) !important;
+      backdrop-filter: blur(1.5px) saturate(82%) brightness(1.04) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.4)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(215,226,245,.10), 0 10px 30px rgba(13,20,32,.14) !important;
+    }
+    #panel-itinerary > .glass-card,
+    #panel-itinerary .station-card,
+    #panel-itinerary .station-card:hover {
+      background-color: rgba(218, 228, 244, .025) !important;
+      background-image: linear-gradient(150deg, rgba(239,246,255,.085), rgba(255,255,255,.01) 58%, rgba(185,201,226,.018)) !important;
+      -webkit-backdrop-filter: blur(1.5px) saturate(78%) brightness(1.05) !important;
+      backdrop-filter: blur(1.5px) saturate(78%) brightness(1.05) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.4)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(215,226,245,.10), 0 12px 34px rgba(13,20,32,.14) !important;
+    }
+    #panel-itinerary .station-card .st-head,
+    #panel-itinerary .station-card .day-card,
+    #panel-itinerary .station-card .diet-card,
+    #panel-itinerary .station-card .wx-hud,
+    #panel-itinerary .station-card .hud-cap {
+      background-color: rgba(230, 237, 249, .045) !important;
+      background-image: linear-gradient(145deg, rgba(245,248,255,.10), rgba(255,255,255,.018)) !important;
+      -webkit-backdrop-filter: blur(1.5px) saturate(84%) brightness(1.04) !important;
+      backdrop-filter: blur(1.5px) saturate(84%) brightness(1.04) !important;
+      box-shadow: inset var(--sheen-x, 0px) var(--sheen-y, 1px) 1.5px 0 rgba(255,255,255,var(--sheen-opacity,.4)), inset calc(var(--sheen-x, 0px) * -1) calc(var(--sheen-y, 1px) * -1) 1px 0 rgba(215,226,245,.09) !important;
+    }
+    /* 第二页（日常管理）让第一张内容卡更靠近屏幕上沿。 */
+    #panel-daily { margin-top: 0 !important; padding-top: 10px !important; }
+    /* 首屏标题减轻前面三字的黑色投影；「南」保留原来用户认可的效果。 */
+    .hero-title { text-shadow: none !important; }
+    .hero-title .title-char:not([data-k="nan"]) {
+      text-shadow: 0 2px 10px rgba(0,0,0,.32), 0 0 24px rgba(255,255,255,.14) !important;
+    }
+    .hero-title .title-char[data-k="nan"] {
+      text-shadow: 0 2px 10px rgba(0,0,0,.32), 0 0 24px rgba(255,255,255,.14) !important;
+    }
+    /* 医院资料折叠项使用卡片内部的自绘箭头，避免原生三角标记溢出边框。 */
+    #panel-gear details > summary {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: .55rem !important;
+      position: relative !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      padding-left: 1.2rem !important;
+      padding-right: 0 !important;
+      list-style: none !important;
+      cursor: pointer;
+    }
+    #panel-gear details > summary::marker { content: "" !important; }
+    #panel-gear details > summary::-webkit-details-marker { display: none !important; }
+    #panel-gear details > summary::after {
+      content: "▸";
+      position: absolute;
+      left: .1rem;
+      top: 50%;
+      color: rgba(255,255,255,.86);
+      font-size: .9rem;
+      line-height: 1;
+      transform: translateY(-50%) rotate(0deg);
+      transition: transform .2s ease;
+    }
+    #panel-gear details[open] > summary::after { transform: translateY(-50%) rotate(90deg); }
+  </style>
 </head>
   <body class="min-h-screen flex flex-col selection:bg-white/25 selection:text-white">
 
@@ -2579,17 +2839,11 @@
     <button class="sr-btn active" data-tab="itinerary" onclick="switchTab('itinerary')" aria-label="7站自驾与图景">
       <svg class="fa-i" aria-hidden="true"><use href="#fa-route"></use></svg><span class="sr-tip">7站自驾与图景</span>
     </button>
-    <button class="sr-btn" data-tab="daily" onclick="switchTab('daily')" aria-label="每日纪律时钟">
-      <svg class="fa-i" aria-hidden="true"><use href="#fa-clock"></use></svg><span class="sr-tip">每日纪律时钟</span>
-    </button>
-    <button class="sr-btn" data-tab="diet" onclick="switchTab('diet')" aria-label="薄肌精雕与旅途节拍">
-      <svg class="fa-i" aria-hidden="true"><use href="#fa-dumbbell"></use></svg><span class="sr-tip">薄肌精雕与旅途节拍</span>
+    <button class="sr-btn" data-tab="daily" onclick="switchTab('daily')" aria-label="日常管理">
+      <svg class="fa-i" aria-hidden="true"><use href="#fa-clock"></use></svg><span class="sr-tip">日常管理</span>
     </button>
     <button class="sr-btn" data-tab="gear" onclick="switchTab('gear')" aria-label="安全自救与应急通讯">
       <svg class="fa-i" aria-hidden="true"><use href="#fa-shield-halved"></use></svg><span class="sr-tip">安全自救与应急通讯</span>
-    </button>
-    <button class="sr-btn" data-tab="tracker" onclick="switchTab('tracker')" aria-label="互动打卡清单">
-      <svg class="fa-i" aria-hidden="true"><use href="#fa-list-check"></use></svg><span class="sr-tip">互动打卡清单</span>
     </button>
     <button class="sr-fold" id="srFold" aria-label="收起导航">
       <svg class="fa-i" aria-hidden="true"><use href="#fa-caret-left"></use></svg>
@@ -4176,31 +4430,72 @@
       </div>
     </section>
 
-    <!-- ==================== TAB 4: 户外极限自救 + 沿线三甲应急医院 ==================== -->
-    <section id="panel-gear" class="tab-panel hidden space-y-10">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-        <!-- 左卡片：户外自救 -->
-        <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px) saturate(160%); -webkit-backdrop-filter: blur(10px) saturate(160%); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.45), inset 0 -1px 1px 0 rgba(0,0,0,0.15), 0 8px 32px 0 rgba(0,0,0,0.25); padding: 24px;">
-          <h3 style="color: #FFFFFF; font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;"><svg class="h3-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path><path d="M12 12v9M4 7.5l8 4.5 8-4.5"></path></svg>户外行车与野外极限自救底牌</h3>
-          <div style="color: #CBD5E1; font-size: 0.9rem; line-height: 1.6;">
-            <p><strong>1. 特斯拉车宿与密闭安全：</strong>车宿常开【露营模式】并保持外循环；单侧车窗预留 1cm 微缝；破窗器置于主驾门板储物槽触手可及处；车内严禁明火。</p>
-            <p style="margin-top: 10px;"><strong>2. 国道夜间与恶劣天气自救：</strong>遇强降雨或落石果断驶入开阔服务区或加油站；夜间故障车后 150 米立三角架，人员迅速撤离至护栏外，切勿车内滞留。</p>
-            <p style="margin-top: 10px;"><strong>3. 急性脱水与运动损伤自救：</strong>严重脱水立即移至阴凉处口服补液盐（ORS）并冷敷颈动脉；急性扭伤遵循 PRICE 原则（制动/冰敷/加压/抬高），严禁立即热敷推拿。</p>
-          </div>
-        </div>
+    <!-- ==================== TAB 3: 旅途安全与应急 ==================== -->
+    <section id="panel-gear" class="tab-panel hidden space-y-6">
+      <header class="glass-card p-6 rounded-2xl" style="border-color:rgba(255,255,255,.22);">
+        <p style="color:#a7f3d0;font-size:.72rem;letter-spacing:.18em;font-weight:700;">ROAD TRIP · SAFETY</p>
+        <h2 style="color:#fff;font-size:1.55rem;font-weight:750;margin:.35rem 0;">旅途安全与应急</h2>
+        <p style="color:#e2e8f0;line-height:1.7;">先确保人身安全，再联系对应救援。紧急时请停车后操作，切勿边开车边看手机。</p>
+      </header>
 
-        <!-- 右卡片：三甲医院直联 -->
-        <div style="background: rgba(255,255,255,0.08); backdrop-filter: blur(10px) saturate(160%); -webkit-backdrop-filter: blur(10px) saturate(160%); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; box-shadow: inset 0 1px 1px 0 rgba(255,255,255,0.45), inset 0 -1px 1px 0 rgba(0,0,0,0.15), 0 8px 32px 0 rgba(0,0,0,0.25); padding: 24px;">
-          <h3 style="color: #FFFFFF; font-size: 1.2rem; font-weight: 600; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;"><svg class="h3-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"></rect><path d="M12 8.5v7M8.5 12h7"></path></svg>沿线关键三甲应急医院直联</h3>
-          <ul style="color: #CBD5E1; font-size: 0.88rem; line-height: 1.8; list-style: none; padding: 0;">
-            <li style="margin-bottom: 8px;"><strong>衡阳站：</strong>南华大学附属第一医院（<a class="hosp-nav" href="javascript:void(0)" data-name="南华大学附属第一医院" data-lat="26.9010" data-lng="112.5855" title="高德导航 · 最快路线直达"><svg class="fa-i" aria-hidden="true"><use href="#fa-diamond-turn-right"></use></svg>石鼓区船山路69号</a>）<br>📞 电话：<a href="tel:07348279008" style="color: #FFFFFF; text-decoration: underline;">0734-8279008</a></li>
-            <li style="margin-bottom: 8px;"><strong>郴州站：</strong>郴州市第一人民医院（<a class="hosp-nav" href="javascript:void(0)" data-name="郴州市第一人民医院" data-lat="25.7955" data-lng="113.0318" title="高德导航 · 最快路线直达"><svg class="fa-i" aria-hidden="true"><use href="#fa-diamond-turn-right"></use></svg>北湖区罗家井102号</a>）<br>📞 电话：<a href="tel:07352225120" style="color: #FFFFFF; text-decoration: underline;">0735-2225120</a></li>
-            <li style="margin-bottom: 8px;"><strong>清远站：</strong>清远市人民医院（<a class="hosp-nav" href="javascript:void(0)" data-name="清远市人民医院" data-lat="23.6582" data-lng="113.0611" title="高德导航 · 最快路线直达"><svg class="fa-i" aria-hidden="true"><use href="#fa-diamond-turn-right"></use></svg>清城区银泉南路B24号区</a>）<br>📞 电话：<a href="tel:07633980000" style="color: #FFFFFF; text-decoration: underline;">0763-3980000</a></li>
-            <li style="margin-bottom: 8px;"><strong>湛江/徐闻港口站：</strong>广东医科大学附属医院（<a class="hosp-nav" href="javascript:void(0)" data-name="广东医科大学附属医院" data-lat="21.2086" data-lng="110.4047" title="高德导航 · 最快路线直达"><svg class="fa-i" aria-hidden="true"><use href="#fa-diamond-turn-right"></use></svg>霞山区人民大道南57号</a>）<br>📞 电话：<a href="tel:07592231200" style="color: #FFFFFF; text-decoration: underline;">0759-2231200</a></li>
-            <li><strong>海口站：</strong>海南省人民医院（<a class="hosp-nav" href="javascript:void(0)" data-name="海南省人民医院" data-lat="20.0173" data-lng="110.2867" title="高德导航 · 最快路线直达"><svg class="fa-i" aria-hidden="true"><use href="#fa-diamond-turn-right"></use></svg>秀英区秀华路19号</a>）<br>📞 电话：<a href="tel:089868642120" style="color: #FFFFFF; text-decoration: underline;">0898-68642120</a></li>
-          </ul>
+      <section class="glass-card p-6 rounded-2xl" aria-label="紧急电话">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+          <h3 style="color:#fff;font-size:1.12rem;font-weight:700;">一键拨打 · 中国大陆</h3>
+          <span style="color:#cbd5e1;font-size:.78rem;">点击号码可拨号</span>
         </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:12px;">
+          <a href="tel:120" style="display:block;padding:16px;border-radius:16px;background:rgba(220,38,38,.2);border:1px solid rgba(252,165,165,.55);text-decoration:none;"><span style="display:block;color:#fecaca;font-size:.78rem;">医疗急救</span><strong style="display:block;color:#fff;font-size:1.8rem;">120</strong></a>
+          <a href="tel:122" style="display:block;padding:16px;border-radius:16px;background:rgba(37,99,235,.18);border:1px solid rgba(147,197,253,.45);text-decoration:none;"><span style="display:block;color:#bfdbfe;font-size:.78rem;">交通事故报警</span><strong style="display:block;color:#fff;font-size:1.8rem;">122</strong></a>
+          <a href="tel:110" style="display:block;padding:16px;border-radius:16px;background:rgba(37,99,235,.18);border:1px solid rgba(147,197,253,.45);text-decoration:none;"><span style="display:block;color:#bfdbfe;font-size:.78rem;">治安 / 警情</span><strong style="display:block;color:#fff;font-size:1.8rem;">110</strong></a>
+          <a href="tel:119" style="display:block;padding:16px;border-radius:16px;background:rgba(234,88,12,.18);border:1px solid rgba(253,186,116,.45);text-decoration:none;"><span style="display:block;color:#fed7aa;font-size:.78rem;">火灾 / 困境救援</span><strong style="display:block;color:#fff;font-size:1.8rem;">119</strong></a>
+        </div>
+        <p style="margin-top:14px;color:#cbd5e1;font-size:.8rem;line-height:1.65;">以上是中国大陆常用紧急号码；出境旅行请使用当地号码。若不确定该联系谁，先拨 110 或 120 并说明情况。</p>
+      </section>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section class="glass-card p-6 rounded-2xl">
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:14px;">突发情况 · 先做这三步</h3>
+          <ol style="padding-left:1.25rem;color:#e2e8f0;line-height:1.8;">
+            <li style="margin-bottom:9px;"><strong style="color:#fff;">先离开危险。</strong>尽可能把车停到安全位置；高速或车流中有危险时，人员撤到护栏外等安全区域。不要站在车道内处理车辆。</li>
+            <li style="margin-bottom:9px;"><strong style="color:#fff;">说清位置和情况。</strong>报道路名称、行驶方向、最近出口/服务区或里程桩、伤者人数和现场风险；不确定位置时打开地图定位。</li>
+            <li><strong style="color:#fff;">听从接警人员。</strong>按调度员指引等待救援。只有在确保自身安全时才设置警示标志；不要为摆放标志冒险穿越车流。</li>
+          </ol>
+          <div style="margin-top:16px;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.07);color:#cbd5e1;font-size:.82rem;line-height:1.65;">交通事故口诀：<strong style="color:#fff;">车靠边、人撤离、即报警。</strong>有人受伤时同时拨打 120；涉及道路事故可拨 122。</div>
+        </section>
+        <section class="glass-card p-6 rounded-2xl">
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:14px;">车辆故障 / 烟雾 / 暴雨</h3>
+          <div style="color:#e2e8f0;line-height:1.75;font-size:.9rem;">
+            <p style="margin-bottom:12px;"><strong style="color:#fff;">车辆故障：</strong>安全停车、开启危险警示灯，人员先到安全区域，再联系道路救援或车辆官方 App。不要在车流侧自行维修。</p>
+            <p style="margin-bottom:12px;"><strong style="color:#fff;">疑似起火或浓烟：</strong>立即停车并让所有人远离车辆，勿返回取物、勿触碰高压部件；拨 119，并明确告知车辆为电动汽车（如适用）。</p>
+            <p><strong style="color:#fff;">暴雨积水 / 落石：</strong>不要驶入深水或被淹路段，不要停在山体、河道和低洼危险处；无法安全继续时尽早停到安全地点并听从现场指挥。</p>
+          </div>
+        </section>
       </div>
+
+      <section class="glass-card p-6 rounded-2xl">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+          <h3 style="color:#fff;font-size:1.1rem;font-weight:700;">沿线医院 · 先核对院区</h3>
+          <span style="color:#cbd5e1;font-size:.78rem;">导航按钮打开地图搜索</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;">
+          <article style="padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;"><strong style="color:#fff;">衡阳 · 南华大学附属第一医院</strong><p style="margin:5px 0;color:#cbd5e1;font-size:.83rem;">石鼓区船山大道 69 号</p><a class="hosp-nav" href="javascript:void(0)" style="color:#d9f99d;font-size:.85rem;">直接导航到医院 ↗</a></article>
+          <article style="padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;"><strong style="color:#fff;">郴州 · 郴州市第一人民医院中心医院</strong><p style="margin:5px 0;color:#cbd5e1;font-size:.83rem;">北湖区罗家井 102 号；医院有多个院区</p><a class="hosp-nav" href="javascript:void(0)" style="color:#d9f99d;font-size:.85rem;">直接导航到医院 ↗</a></article>
+          <article style="padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;"><strong style="color:#fff;">清远 · 清远市人民医院</strong><p style="margin:5px 0;color:#cbd5e1;font-size:.83rem;">清城区银泉南路 B24 号区；出发前确认院区</p><a class="hosp-nav" href="javascript:void(0)" style="color:#d9f99d;font-size:.85rem;">直接导航到医院 ↗</a></article>
+          <article style="padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;"><strong style="color:#fff;">湛江 · 广东医科大学附属医院</strong><p style="margin:5px 0;color:#cbd5e1;font-size:.83rem;">霞山区人民大道南 57 号</p><a class="hosp-nav" href="javascript:void(0)" style="color:#d9f99d;font-size:.85rem;">直接导航到医院 ↗</a></article>
+          <article style="padding:14px;border:1px solid rgba(255,255,255,.16);border-radius:14px;"><strong style="color:#fff;">海口 · 海南省人民医院秀英院区</strong><p style="margin:5px 0;color:#cbd5e1;font-size:.83rem;">秀英区秀华路 19 号</p><a class="hosp-nav" href="javascript:void(0)" style="color:#d9f99d;font-size:.85rem;">直接导航到医院 ↗</a></article>
+        </div>
+        <p style="margin-top:14px;color:#cbd5e1;font-size:.8rem;line-height:1.65;">危重情况优先拨打 120，由急救调度安排合适的救治地点；医院地址和院区可能调整，出发前请在地图或医院官方渠道再次确认。</p>
+        <details style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.16);color:#cbd5e1;font-size:.8rem;line-height:1.7;">
+        <summary style="cursor:pointer;color:#fff;font-weight:650;">号码与医院信息来源</summary>
+        <ul style="margin-top:10px;padding-left:1.2rem;">
+          <li><a href="https://en.nhc.gov.cn/2019-03/05/c_74520.htm" target="_blank" rel="noopener" style="color:#d9f99d;">国家卫生健康委：全国紧急电话说明</a></li>
+          <li><a href="https://www.mem.gov.cn/xw/xwfbh/2025n09y29xwfbh/wzsl_4260/202509/t20250929_560335.shtml" target="_blank" rel="noopener" style="color:#d9f99d;">应急管理部：国庆假期出行安全提示</a></li>
+          <li><a href="https://www.nhfyyy.com/dzb/naviga.html" target="_blank" rel="noopener" style="color:#d9f99d;">南华大学附属第一医院：来院导航</a> · <a href="https://www.czdyhospital.cn/" target="_blank" rel="noopener" style="color:#d9f99d;">郴州市第一人民医院官网</a></li>
+          <li><a href="https://phhp.com.cn/yygk/yyjs/yyjj.htm" target="_blank" rel="noopener" style="color:#d9f99d;">海南省人民医院：医院介绍</a></li>
+        </ul>
+        <p style="margin-top:8px;">已按官方公开信息整理；非急救咨询电话未作为急救热线展示。</p>
+        </details>
+      </section>
     </section>
 
     <!-- ==================== TAB 5: 互动打卡清单 ==================== -->
@@ -4293,6 +4588,11 @@
   <script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+      // 日常管理将作息、饮食训练和打卡并排放在同一个可滚动页面里。
+      const dailyPanels = tabId === 'daily'
+        ? ['panel-daily', 'panel-diet', 'panel-tracker'].map(id => document.getElementById(id)).filter(Boolean)
+        : [];
+      dailyPanels.forEach(panel => panel.classList.remove('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('active', 'text-white');
         btn.classList.add('text-slate-400');
@@ -4301,16 +4601,18 @@
       const targetBtn = document.getElementById(`tab-${tabId}`);
       if (targetPanel) {
         targetPanel.classList.remove('hidden');
+        targetPanel.classList.toggle('tab-panel-centered', tabId === 'gear');
         setTimeout(() => {
           if (tabId === 'itinerary') {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (typeof updateTopButton === 'function') updateTopButton(document.getElementById('toTopBtn'));
             return;
           }
-          // 优先对齐首张核心卡片；保留面板已有的顶部安全间距。
-          const firstCard = targetPanel.querySelector('.glass-card') || targetPanel;
-          const topGap = Math.max(16, parseFloat(getComputedStyle(targetPanel).paddingTop) || 0);
-          const targetScrollY = window.scrollY + firstCard.getBoundingClientRect().top - topGap;
-          window.scrollTo({ top: Math.max(0, targetScrollY), behavior: 'smooth' });
+          // 安全页内容较短时垂直居中；日常管理是长页面，从顶部自然滚动阅读。
+          const panelTop = window.scrollY + targetPanel.getBoundingClientRect().top;
+          const topGap = Math.max(14, parseFloat(getComputedStyle(targetPanel).paddingTop) || 0);
+          window.scrollTo({ top: Math.max(0, panelTop - topGap), behavior: 'smooth' });
+          if (typeof updateTopButton === 'function') updateTopButton(document.getElementById('toTopBtn'));
         }, 50);
       }
       if (targetBtn) {
@@ -4465,7 +4767,8 @@
        policy —— 国道 gd = 1（避开收费）｜高速 gs = 2（高速优先）
        t      —— 0 = 驾车（1 = 公交，严禁用于自驾）
        ================================================================ */
-    const AMAP_POLICY = { gd: '1', gs: '2' };
+    // 高德 URI：policy=3 不走高速；policy=0 使用推荐路线。
+    const AMAP_POLICY = { gd: '3', gs: '0', fastest: '0' };
     const AMAP_T      = '0';   /* 0=驾车；1=公交（本次修复默认公交 bug） */
     const AMAP_SNAME  = '我的位置';
 
@@ -4487,6 +4790,33 @@
         + '&mode=car&policy=' + policy
         + '&src=RoadTrip&coordinate=gaode';
     }
+    function amapSearchUrl(dest, callnative) {
+      return 'https://uri.amap.com/search?keyword=' + encodeURIComponent(dest.dname)
+        + '&callnative=' + (callnative ? '1' : '0') + '&src=RoadTrip';
+    }
+
+    // 百度地图 URI 使用 GCJ-02 坐标声明；目的地用站点名称，避免不同坐标系造成偏移。
+    function baiduScheme(dest, mode) {
+      const carType = mode === 'gd' ? 'FEE' : mode === 'gs' ? 'HIGHWAY' : 'TIME';
+      const protocol = isAndroid() ? 'bdapp' : 'baidumap';
+      const source = isIOS() ? 'ios.lijiangbin.my-trip' : 'andr.lijiangbin.my-trip';
+      return protocol + '://map/direction?origin=' + encodeURIComponent('我的位置')
+        + '&destination=' + encodeURIComponent(dest.dname)
+        + '&mode=driving&coord_type=gcj02&car_type=' + carType
+        + '&src=' + source;
+    }
+    function baiduWeb(dest, mode) {
+      const carType = mode === 'gd' ? 'FEE' : mode === 'gs' ? 'HIGHWAY' : 'TIME';
+      return 'https://api.map.baidu.com/direction?origin=' + encodeURIComponent('我的位置')
+        + '&destination=' + encodeURIComponent(dest.dname)
+        + '&mode=driving&region=' + encodeURIComponent('中国')
+        + '&coord_type=gcj02&car_type=' + carType
+        + '&output=html&src=webapp.lijiangbin.my-trip';
+    }
+    function systemMapLink(dest) {
+      if (isIOS()) return 'https://maps.apple.com/?daddr=' + encodeURIComponent(dest.dname) + '&dirflg=d';
+      return 'geo:0,0?q=' + encodeURIComponent(dest.dname);
+    }
 
     /* ---------- 浮层开关 ---------- */
     let _navDest = null;      /* { dlat, dlon, dname } */
@@ -4498,6 +4828,66 @@
       document.body.classList.remove('mc-lock');
       box.hidden = true;   /* V35：立即关闭，不使用 setTimeout */
     }
+
+    let _launchFallbackTimer = null;
+    let _fallbackTarget = null;
+    function closeMapAppChooser() {
+      const box = document.getElementById('mapAppChooser');
+      if (!box) return;
+      box.classList.remove('show');
+      box.hidden = true;
+      document.body.classList.remove('mc-lock');
+    }
+    function showMapAppChooser(dest, mode) {
+      const box = document.getElementById('mapAppChooser');
+      if (!box) return;
+      _fallbackTarget = { dest, mode };
+      document.getElementById('fallbackDestName').textContent = dest.dname;
+      const amapLink = document.getElementById('fallbackAmap');
+      amapLink.href = dest.dlat && dest.dlon ? amapScheme(dest, AMAP_POLICY[mode] || '0') : amapSearchUrl(dest, true);
+      amapLink.textContent = dest.dlat && dest.dlon ? '打开高德地图' : '高德搜索医院';
+      document.getElementById('fallbackBaidu').href = baiduScheme(dest, mode);
+      document.getElementById('fallbackSystem').href = systemMapLink(dest);
+      document.getElementById('fallbackApple').href = 'https://maps.apple.com/?daddr=' + encodeURIComponent(dest.dname) + '&dirflg=d';
+      document.getElementById('fallbackAmapWeb').href = dest.dlat && dest.dlon ? amapWeb(dest, AMAP_POLICY[mode] || '0') : amapSearchUrl(dest, false);
+      document.getElementById('fallbackBaiduWeb').href = baiduWeb(dest, mode);
+      box.hidden = false;
+      void box.offsetWidth;
+      box.classList.add('show');
+      document.body.classList.add('mc-lock');
+    }
+    function launchWithFallback(url, dest, mode, webUrl) {
+      closeMapChooser();
+      closeMapAppChooser();
+      clearTimeout(_launchFallbackTimer);
+      if (!isMobileUA() && !isWeChat()) {
+        window.open(webUrl, '_blank', 'noopener');
+        return;
+      }
+      _launchFallbackTimer = setTimeout(() => {
+        if (document.visibilityState === 'visible' && document.hasFocus()) showMapAppChooser(dest, mode);
+      }, 1200);
+      window.location.href = url;
+    }
+    function launchAmapWithFallback(dest, mode) {
+      const policy = AMAP_POLICY[mode] || '0';
+      launchWithFallback(amapScheme(dest, policy), dest, mode, amapWeb(dest, policy));
+    }
+    function launchBaiduWithFallback(dest, mode) {
+      launchWithFallback(baiduScheme(dest, mode), dest, mode, baiduWeb(dest, mode));
+    }
+    function launchHospitalNav(name) {
+      const dest = { dname:name };
+      // 百度路线 URI 支持按地点名称规划终点，避免依赖未经核验的医院坐标。
+      launchBaiduWithFallback(dest, 'fastest');
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        clearTimeout(_launchFallbackTimer);
+        closeMapAppChooser();
+      }
+    });
+    window.addEventListener('blur', () => clearTimeout(_launchFallbackTimer));
 
     function openNavChooser(lat, lng, name) {
       if (!lat || !lng || !name) { showToast('该地点暂无坐标'); return; }
@@ -4518,23 +4908,20 @@
       /* V34：此处不再申请定位权限，弹窗纯静态、零打扰 */
     }
 
-    /* ---------- 选完模式 -> 用户点击手势内直接拉起高德，无二次确认 ---------- */
+    /* ---------- 先直接尝试高德；如果没有离开页面，再给地图选择和网页后备 ---------- */
     function goNavigate(mode, destOverride) {
       const dest = destOverride || _navDest;
       if (!dest) return;
-      const policy = AMAP_POLICY[mode] || AMAP_POLICY.gs;
-
-      /* V36：用户点击手势内第一优先级直接唤起高德 App，无任何 setTimeout / iframe / 唤醒检测 / 二次确认 */
-      /* 微信内置浏览器亦直接尝试 scheme；若被微信拦截，那是系统/微信层级限制，网页层不再额外弹窗。 */
-      window.location.href = amapScheme(dest, policy);
-      closeMapChooser();
+      launchAmapWithFallback(dest, mode);
     }
 
     /* ---------- 兼容旧调用点：站点卡片 / 医院 导航按钮 ---------- */
-    function launchNav(lat, lng, name) {
+    function launchNav(lat, lng, name, directMode) {
+      if (!lat || !lng || !name) { showToast('该地点暂无导航信息'); return; }
+      const dest = { dlat:String(lat), dlon:String(lng), dname:name };
+      if (directMode) { launchAmapWithFallback(dest, directMode); return; }
       if (isMobileUA() || isWeChat()) { openNavChooser(lat, lng, name); return; }
-      /* 桌面端无 App 可唤起：当前页直接跳转高德网页版，无二次弹窗 */
-      window.location.href = amapWeb({ dlat:String(lat), dlon:String(lng), dname:name }, AMAP_POLICY.gs);
+      window.open(amapWeb(dest, AMAP_POLICY.gs), '_blank', 'noopener');
     }
     function amapNavigate(btn) { launchNav(btn.dataset.lat, btn.dataset.lng, btn.dataset.name); }
 
@@ -4548,9 +4935,12 @@
       }
       if (e.target.closest('#mcCancel')) { e.preventDefault(); closeMapChooser(); return; }
       if (e.target.id === 'mapChooser') { closeMapChooser(); return; }
+      if (e.target.closest('#fallbackCancel') || e.target.id === 'mapAppChooser') { e.preventDefault(); closeMapAppChooser(); return; }
+      const fallbackLink = e.target.closest('#mapAppChooser a');
+      if (fallbackLink && fallbackLink.target === '_blank') closeMapAppChooser();
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMapChooser();
+      if (e.key === 'Escape') { closeMapChooser(); closeMapAppChooser(); }
     });
 
     /* ---------- 事件绑定：站点 + 医院，统一入口 ---------- */
@@ -4564,8 +4954,9 @@
       const hosp = e.target.closest('.hosp-nav');
       if (hosp) {
         e.preventDefault();
-        /* 医院导航：直接默认最快（高速优先）唤起高德，无需弹窗选择 */
-        goNavigate('gs', { dlat:String(hosp.dataset.lat), dlon:String(hosp.dataset.lng), dname:hosp.dataset.name });
+        const card = hosp.closest('article');
+        const label = card && card.querySelector('strong') ? card.querySelector('strong').textContent : '附近医院';
+        launchHospitalNav(label.replace(' · ', ''));
         return;
       }
     });
@@ -4887,8 +5278,8 @@
 
       /* ========== 核心：滚动监听（简单、纯粹、不打架） ========== */
       window.addEventListener('scroll', () => {
-        // 回顶按钮
-        if (topBtn) topBtn.classList.toggle('tt-show', window.scrollY > 320);
+        // 仅滚到页面最底部附近时显示回顶箭头，避免浏览途中误触。
+        if (topBtn) updateTopButton(topBtn);
 
         // 1) 只要一滑动：面板开着就强制收起
         if (opened) closeDrawer();
@@ -4965,10 +5356,21 @@
       // 键盘可达性：Tab 进面板自动展开
       rail.addEventListener('focusin', () => { if (!opened) openDrawer(); });
 
+      /* ---------- 初始化：默认隐藏回顶箭头 ---------- */
+      if (topBtn) updateTopButton(topBtn);
+
       /* ---------- 初始化：默认收起，只留微光细条 ---------- */
       closeDrawer();
       if (edge) edge.classList.remove('scrolling-hidden');
     })();
+
+    function updateTopButton(button) {
+      const scroller = document.scrollingElement || document.documentElement;
+      const activePanel = document.querySelector('.tab-panel:not(.hidden)');
+      const isHome = activePanel && activePanel.id === 'panel-itinerary';
+      const atBottom = scroller.scrollTop + window.innerHeight >= scroller.scrollHeight - 48;
+      button.classList.toggle('tt-show', Boolean(isHome && atBottom));
+    }
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -5285,8 +5687,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#F8FAFC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19c0-4 3-5 6-5s6 1 6-3-4-3-4-6"/><circle cx="4" cy="20" r="1.4"/><circle cx="18" cy="5" r="1.4"/></svg>
         </span>
         <span class="nm-tx">
-          <b>纯国道巡航 · 不走高速</b>
-          <em>避开高速重卡与收费站 · 走走停停看沿途风景</em>
+          <b>国道优先 · 尽量避开高速</b>
+          <em>适合慢游看沿途风景；具体路线按所选地图的偏好规划</em>
         </span>
       </button>
 
@@ -5296,17 +5698,34 @@
         </span>
         <span class="nm-tx">
           <b>高速直达 · 极速补能</b>
-          <em>高速优先 · 最快抵达，服务区超充不排队</em>
+          <em>优先高速 · 服务区补能，尽快抵达</em>
         </span>
       </button>
 
       <div class="nm-geo" id="navGeoStatus">
         <span class="nm-pin"></span>
-        <span id="navGeoText">起点＝手机实时定位 · 网页无需授权，点击即唤醒高德</span>
+        <span id="navGeoText">起点交由地图 App 定位 · 本网页不读取定位信息</span>
       </div>
 
       <button class="mc-cancel" id="mcCancel" type="button">取消</button>
-      <p class="mc-hint" id="mcHint">本页不读取任何定位权限；高德 App 打开后自动以<b>我的位置</b>为起点规划。</p>
+      <p class="mc-hint" id="mcHint">本页不读取定位权限；打开地图后以<b>我的位置</b>为起点规划。</p>
+    </div>
+  </div>
+
+  <div class="map-chooser" id="mapAppChooser" role="dialog" aria-modal="true" aria-label="选择地图应用" hidden>
+    <div class="mc-sheet nm-sheet" role="document">
+      <div class="mc-grip"></div>
+      <div class="mc-title">导航至 <b id="fallbackDestName">目的地</b></div>
+      <p style="margin:.35rem .25rem .8rem;text-align:center;color:#e2e8f0;font-size:.84rem;line-height:1.55;">如果刚才没有打开地图，可以在这里选择手机已安装的地图继续。</p>
+      <div class="map-app-links">
+        <a id="fallbackAmap" href="#">打开高德地图</a>
+        <a id="fallbackBaidu" href="#">打开百度地图</a>
+        <a id="fallbackSystem" href="#">打开系统地图</a>
+        <a id="fallbackApple" href="#">Apple 地图</a>
+      </div>
+      <div class="map-app-web"><a id="fallbackAmapWeb" href="#" target="_blank" rel="noopener">高德网页版</a><a id="fallbackBaiduWeb" href="#" target="_blank" rel="noopener">百度网页版</a></div>
+      <button class="mc-cancel" id="fallbackCancel" type="button">留在当前页面</button>
+      <p class="mc-hint">路线偏好会传给支持该选项的地图；地图 App 和浏览器版本不同，最终路线以 App 显示为准。</p>
     </div>
   </div>
 
