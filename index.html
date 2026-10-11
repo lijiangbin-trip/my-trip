@@ -3,11 +3,10 @@
 <style>
 * {
     -webkit-tap-highlight-color: transparent !important;
-    outline: none !important;
 }
 </style>  
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#0D0F12">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -2660,8 +2659,9 @@
     .station-card { transition: transform .3s ease, border-color .3s ease !important; }
     .station-card:hover { transform: translateY(-2px); }
     .station-card.hl { border-color: rgba(255,255,255,.68) !important; animation: none !important; }
-    :focus-visible { outline: 2px solid rgba(224,255,170,.95) !important; outline-offset: 3px !important; }
     ::selection { background: rgba(218,255,158,.4) !important; color: #fff !important; }
+    :focus-visible { outline: 2px solid rgba(224,255,170,.95) !important; outline-offset: 3px !important; }
+    input[type="checkbox"]:focus-visible { outline: 2px solid rgba(224,255,170,.95) !important; outline-offset: 3px !important; }
     footer { color: rgba(255,255,255,.85) !important; }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -4586,6 +4586,17 @@
   </footer>
 
   <script>
+    // 本地存储被隐私模式或浏览器策略禁用时，页面仍应可正常使用。
+    function readStoredValue(key) {
+      try { return localStorage.getItem(key); } catch (error) { return null; }
+    }
+    function writeStoredValue(key, value) {
+      try { localStorage.setItem(key, value); return true; } catch (error) { return false; }
+    }
+    function removeStoredValue(key) {
+      try { localStorage.removeItem(key); return true; } catch (error) { return false; }
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
       // 日常管理将作息、饮食训练和打卡并排放在同一个可滚动页面里。
@@ -4633,6 +4644,20 @@
       setTimeout(() => el.classList.remove('hl'), 1600);
     }
 
+    // SVG 路线节点原本只有鼠标/触屏点击；补齐键盘与读屏语义。
+    document.querySelectorAll('.map-node').forEach(node => {
+      const label = node.querySelector('text');
+      node.setAttribute('role', 'button');
+      node.setAttribute('tabindex', '0');
+      node.setAttribute('aria-label', '跳转到' + (label ? label.textContent.trim() : '行程站点'));
+      node.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          node.click();
+        }
+      });
+    });
+
     // HUD 胶囊点击复制
     function copyHud(btn, text) {
       const done = () => {
@@ -4671,14 +4696,14 @@
 
     // 时间轴轻打卡（localStorage 持久化）
     const TL_KEY = 'tl_checks_v1';
-    const tlState = () => { try { return JSON.parse(localStorage.getItem(TL_KEY) || '{}'); } catch (e) { return {}; } };
+    const tlState = () => { try { return JSON.parse(readStoredValue(TL_KEY) || '{}'); } catch (e) { return {}; } };
     document.addEventListener('click', (e) => {
       const item = e.target.closest('.tl-item');
       if (!item) return;
       item.classList.toggle('done');
       const s = tlState();
       s[item.dataset.tlkey] = item.classList.contains('done');
-      localStorage.setItem(TL_KEY, JSON.stringify(s));
+      writeStoredValue(TL_KEY, JSON.stringify(s));
     });
     function restoreTimeline() {
       const s = tlState();
@@ -4705,7 +4730,7 @@
       if (!container) return;
       container.innerHTML = '';
       checklistItems.forEach(item => {
-        const isChecked = localStorage.getItem(item.id) === 'true';
+        const isChecked = readStoredValue(item.id) === 'true';
         const div = document.createElement('label');
         div.className = 'ck-card';
         div.innerHTML = `
@@ -4721,13 +4746,13 @@
 
     function toggleCheck(id) {
       const checkbox = document.getElementById(id);
-      localStorage.setItem(id, checkbox.checked);
+      writeStoredValue(id, checkbox.checked);
       renderChecklist();
     }
 
     function resetCheckboxes() {
       if (confirm('确定要清空今日打卡记录吗？')) {
-        checklistItems.forEach(item => localStorage.removeItem(item.id));
+        checklistItems.forEach(item => removeStoredValue(item.id));
         renderChecklist();
       }
     }
@@ -4791,8 +4816,10 @@
         + '&src=RoadTrip&coordinate=gaode';
     }
     function amapSearchUrl(dest, callnative) {
-      return 'https://uri.amap.com/search?keyword=' + encodeURIComponent(dest.dname)
-        + '&callnative=' + (callnative ? '1' : '0') + '&src=RoadTrip';
+      const keyword = [dest.dname, dest.address].filter(Boolean).join(' ');
+      return 'https://uri.amap.com/search?keyword=' + encodeURIComponent(keyword)
+        + (dest.city ? '&city=' + encodeURIComponent(dest.city) : '')
+        + '&view=map&callnative=' + (callnative ? '1' : '0') + '&src=RoadTrip';
     }
 
     // 百度地图 URI 使用 GCJ-02 坐标声明；目的地用站点名称，避免不同坐标系造成偏移。
@@ -4876,10 +4903,13 @@
     function launchBaiduWithFallback(dest, mode) {
       launchWithFallback(baiduScheme(dest, mode), dest, mode, baiduWeb(dest, mode));
     }
-    function launchHospitalNav(name) {
-      const dest = { dname:name };
-      // 百度路线 URI 支持按地点名称规划终点，避免依赖未经核验的医院坐标。
-      launchBaiduWithFallback(dest, 'fastest');
+    function launchHospitalNav(name, city, address) {
+      const dest = { dname:name, city, address };
+      // 医院卡片没有可靠坐标：使用高德官方 HTTPS 搜索调起链接，
+      // 并同时传城市、院区地址，避免把不完整的百度私有协议误报为无效地址。
+      const amapAppSearch = amapSearchUrl(dest, true);
+      const amapBrowserSearch = amapSearchUrl(dest, false);
+      launchWithFallback(amapAppSearch, dest, 'fastest', amapBrowserSearch);
     }
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') {
@@ -4956,7 +4986,9 @@
         e.preventDefault();
         const card = hosp.closest('article');
         const label = card && card.querySelector('strong') ? card.querySelector('strong').textContent : '附近医院';
-        launchHospitalNav(label.replace(' · ', ''));
+        const [city, hospital] = label.split('·').map(part => part.trim());
+        const address = card && card.querySelector('p') ? card.querySelector('p').textContent.split('；')[0].trim() : '';
+        launchHospitalNav(hospital || label, city || '', address);
         return;
       }
     });
@@ -5000,20 +5032,20 @@
     const STOP_KEY = 'trip_stops_v1';
     // 站点顺序：[名称, 从上一站出发的公里数]
     const SEGMENTS = [
-      { name: '长沙 → 衡阳', km: 140 },
+      { name: '长沙 → 衡阳', km: 170 },
       { name: '衡阳 → 郴州', km: 150 },
-      { name: '郴州 → 清远', km: 280 },
-      { name: '清远 → 开平', km: 150 },
-      { name: '开平 → 阳江', km: 130 },
-      { name: '阳江 → 湛江', km: 160 },
-      { name: '湛江 → 海口', km: 170 }
+      { name: '郴州 → 清远', km: 160 },
+      { name: '清远 → 开平', km: 180 },
+      { name: '开平 → 阳江', km: 120 },
+      { name: '阳江 → 湛江', km: 250 },
+      { name: '湛江 → 海口', km: 150 }
     ];
     const TOTAL_KM = SEGMENTS.reduce((a, b) => a + b.km, 0);   // 1,180
 
     /* ================================================================
        V22 · 赛段里程权威表（宏观剩余 + 下一程路段，双显仪表盘数据源）
        第 i 项 = 站点 i 的「剩余里程(km)」+「驶向下一站的路段里程(km / 文字)」
-       里程口径以本表为准（V21 stationDistances 的数字与本表完全一致）
+       里程口径以本表为准；分段累计里程同时与本表保持一致
        ================================================================ */
     /* V26：里程 HUD 已改为纯文字，不再使用任何图标 */
 
@@ -5032,17 +5064,6 @@
        V21 · 动态剩余里程仪表
        权威剩余里程表（长沙起点，全程 1,180 km）
        ================================================================ */
-    const stationDistances = [
-      { index: 0, name: '长沙', remaining: 1180 },
-      { index: 1, name: '衡阳', remaining: 1010 },
-      { index: 2, name: '郴州', remaining: 860 },
-      { index: 3, name: '清远', remaining: 700 },
-      { index: 4, name: '开平', remaining: 520 },
-      { index: 5, name: '阳江', remaining: 400 },
-      { index: 6, name: '湛江', remaining: 150 },
-      { index: 7, name: '海口', remaining: 0 }
-    ];
-
     let _lastMileageText = '';
 
     /* 读取右侧打勾状态 -> 刷新左上角双行仪表盘
@@ -5111,7 +5132,7 @@
     // 保留 V21 兼容标识（原补丁期残留，现由 SEGMENTS_NEXT 承接）
 
     const stopState = () => {
-      try { return JSON.parse(localStorage.getItem(STOP_KEY) || '{}'); } catch (e) { return {}; }
+      try { return JSON.parse(readStoredValue(STOP_KEY) || '{}'); } catch (e) { return {}; }
     };
 
     function renderProgress() {
@@ -5154,8 +5175,8 @@
         const checkedCount = prog.querySelectorAll('.mp-node.done').length;
 
         if (totalCount > 1) {
-          const rail = fill.closest('.mp-rail') || track.parentElement;  // .mp-rail
           const track = fill.parentElement;                              // .mp-track
+          const rail = fill.closest('.mp-rail') || track.parentElement;  // .mp-rail
           // V19：统一以 .mp-rail 顶为坐标系原点，精确锚定各节点圆心
           const railTop = rail.getBoundingClientRect().top;
           const cyOf = (el) => el.getBoundingClientRect().top + el.offsetHeight / 2 - railTop;
@@ -5168,9 +5189,6 @@
           track.style.top = firstCY.toFixed(2) + 'px';
           track.style.height = span.toFixed(2) + 'px';
 
-          // 需求指定口径：已勾选占比 = checkedCount / totalCount
-          const progressPercent = totalCount ? (checkedCount / totalCount) : 0;
-
           // 填充高度：以「第 checkedCount 个圆心」相对轨道顶的距离为准
           let h = 0;
           if (checkedCount >= totalCount) {
@@ -5179,8 +5197,6 @@
             const idx = Math.min(checkedCount, totalCount - 1);
             h = cyOf(nodes[idx - 1]) - firstCY;
           }
-          void progressPercent;
-
           const finalH = Math.max(0, Math.min(h, span));
           fill.style.height = finalH.toFixed(2) + 'px';
         } else {
@@ -5215,7 +5231,7 @@
       const i = node.dataset.stop;
       const s = stopState();
       s[i] = !s[i];
-      localStorage.setItem(STOP_KEY, JSON.stringify(s));
+      writeStoredValue(STOP_KEY, JSON.stringify(s));
       renderProgress();               // 内部已含 updateRemainingMileage()
       setTimeout(updateRemainingMileage, 50);   // 双保险：动画帧后二次确认
     });
@@ -5437,11 +5453,11 @@
           + '?latitude=' + lat + '&longitude=' + lng
           + '&current=temperature_2m,relative_humidity_2m,weather_code'
           + '&timezone=auto';
+        let timer = null;
         try {
           const ctrl = new AbortController();
-          const timer = setTimeout(() => ctrl.abort(), 9000);
+          timer = setTimeout(() => ctrl.abort(), 9000);
           const res = await fetch(url, { signal: ctrl.signal, cache: 'no-store' });
-          clearTimeout(timer);
           if (!res.ok) throw new Error('HTTP ' + res.status);
           const j = await res.json();
           const cur = j && j.current;
@@ -5471,6 +5487,8 @@
           if (w) w.textContent = '穿搭速配 · 实时数据暂不可用';
           el.classList.remove('wx-load');
           el.classList.add('wx-fail');
+        } finally {
+          if (timer !== null) clearTimeout(timer);
         }
       }));
     }
